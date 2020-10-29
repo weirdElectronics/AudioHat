@@ -1,0 +1,126 @@
+#N canvas 121 96 1582 888 12;
+#X obj -6 -38 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj -81 -51 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg -29 22 setup_wiringPi;
+#X obj -72 87 unpack f f f f f f f f;
+#X obj -71 56 wiringPi_mcp3008 0 8;
+#X text 82 -8 2 once creation args in main object are specified \,
+click on this message to enable the adcs., f 28;
+#X text 20 -39 3 bang to outout a list of values;
+#X obj -80 -25 metro 5;
+#X obj -87 139 vsl 15 400 0 1023 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 9751 1;
+#X obj -49 139 vsl 15 400 0 1023 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 4914 1;
+#X obj -9 -6 loadbang;
+#X obj -80 -133 loadbang;
+#X obj -80 -108 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -81 -83 del 500;
+#X obj -49 556 sel 1023;
+#X obj -49 585 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -114 558 sel 1023;
+#X obj -114 587 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 318 294 adc~;
+#X obj 317 368 writesf~;
+#X msg 390 333 start;
+#X msg 476 339 stop;
+#X msg 381 256 open rec.wav;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array array2 171520 float 2;
+#X coords 0 1 171520 -1 200 140 1 0 0;
+#X restore 530 389 graph;
+#X obj 309 526 soundfiler;
+#X obj 309 574 nbx 10 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0
+10 -257985 -1 -1 171520 256;
+#X obj 741 442 line~;
+#X text 415 571 nro de samples;
+#X text 866 405 de 0 a 127409 en 3 seg;
+#X obj 740 520 dac~;
+#X msg 742 406 0 \, 147409 3342;
+#X obj 742 385 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 308 472 read -resize rec.wav array2;
+#X obj 741 479 tabread~ array2;
+#X text 312 154 grabar y guardar un sonido desde entrante \, luego
+reproducirlo.;
+#X obj 381 232 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 389 313 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 476 318 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 458 414 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 460 379 del 500;
+#X obj 742 354 r play;
+#X obj 382 200 r save;
+#X obj 389 281 r play-rec;
+#X obj 477 282 r stop-rec;
+#X obj -114 613 s save;
+#X obj -49 604 s play-rec;
+#X obj 49 131 vsl 15 400 0 1023 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 5538 1;
+#X obj 47 559 sel 1023;
+#X obj 47 588 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 88 133 vsl 15 400 0 1023 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 15484 1;
+#X obj 47 607 s stop-rec;
+#X obj 137 560 sel 1023;
+#X obj 137 589 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 137 608 s play;
+#X text 139 625 reproduce;
+#X text -10 630 graba y para;
+#X text -117 632 guarda el sample;
+#X connect 0 0 4 0;
+#X connect 1 0 7 0;
+#X connect 2 0 4 0;
+#X connect 3 0 8 0;
+#X connect 3 1 9 0;
+#X connect 3 2 46 0;
+#X connect 3 3 49 0;
+#X connect 4 0 3 0;
+#X connect 7 0 4 0;
+#X connect 8 0 16 0;
+#X connect 9 0 14 0;
+#X connect 10 0 2 0;
+#X connect 11 0 12 0;
+#X connect 12 0 13 0;
+#X connect 13 0 1 0;
+#X connect 14 0 15 0;
+#X connect 15 0 45 0;
+#X connect 16 0 17 0;
+#X connect 17 0 44 0;
+#X connect 18 0 19 0;
+#X connect 20 0 19 0;
+#X connect 21 0 19 0;
+#X connect 22 0 19 0;
+#X connect 24 0 25 0;
+#X connect 26 0 33 0;
+#X connect 30 0 26 0;
+#X connect 31 0 30 0;
+#X connect 32 0 24 0;
+#X connect 33 0 29 0;
+#X connect 33 0 29 1;
+#X connect 35 0 22 0;
+#X connect 36 0 20 0;
+#X connect 37 0 21 0;
+#X connect 37 0 39 0;
+#X connect 38 0 32 0;
+#X connect 39 0 38 0;
+#X connect 40 0 31 0;
+#X connect 41 0 35 0;
+#X connect 42 0 36 0;
+#X connect 43 0 37 0;
+#X connect 46 0 47 0;
+#X connect 47 0 48 0;
+#X connect 48 0 50 0;
+#X connect 49 0 51 0;
+#X connect 51 0 52 0;
+#X connect 52 0 53 0;
